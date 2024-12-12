@@ -1,0 +1,21 @@
+
+
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://${DB_HOST}:${DB_PORT:3306}/${DB_SCHEMA}?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
+#    initialization-mode: always
+#    hikari:
+#      connection-test-query: SELECT 1
+#      jdbc-url: ${spring.datasource.url}
+#      maximum-pool-size: 17
+#      minimum-idle: 10
+#      pool-name: customer-data
+#      username: ${spring.datasource.username}
+#      password: ${spring.datasource.password}

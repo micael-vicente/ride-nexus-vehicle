@@ -1,0 +1,27 @@
+type Query {
+    getVehicleById(id: ID): Vehicle
+    getVehicles: [Vehicle]
+}
+
+type Mutation {
+    addVehicle(vehicle: VehicleMutation): Vehicle
+    updateVehicle(id: ID, vehicle: VehicleMutation): Vehicle
+    removeVehicle(id: ID): ID
+}
+
+type Vehicle {
+    id: ID
+    alias: String
+    countryCode: String
+    licensePlate: String
+    licensePlateDate: String
+    weight: Float
+}
+
+input VehicleMutation {
+    alias: String
+    countryCode: String!
+    licensePlate: String!
+    licensePlateDate: String!
+    weight: Float!
+}
