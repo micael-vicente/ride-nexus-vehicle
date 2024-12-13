@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pt.ridenexus.vehicle.mapper.Service2WebVehicleMapper;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleService;
-import pt.ridenexus.vehicle.web.api.VehicleMutationDto;
 import pt.ridenexus.vehicle.web.api.VehicleDto;
+import pt.ridenexus.vehicle.web.api.VehicleMutationDto;
 
 import java.util.List;
 

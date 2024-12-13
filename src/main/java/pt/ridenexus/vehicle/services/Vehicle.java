@@ -1,6 +1,10 @@
 package pt.ridenexus.vehicle.services;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -11,9 +15,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Vehicle {
     private Long id;
+    private String region;
+    private String make;
+    private String model;
+    private String version;
     private String alias;
     private String countryCode;
     private String licensePlate;
     private LocalDate licensePlateDate;
-    private double weight;
+    private Double weight;
+    private Integer mileage;
 }

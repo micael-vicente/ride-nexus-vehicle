@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
-public class NoDBRepository implements VehicleRepository {
+public class NoDBVehicleRepository implements VehicleRepository {
 
     private static Long idSequence = 0L;
     private static final Map<Long, Vehicle> VEHICLES = new HashMap<>();

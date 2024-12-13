@@ -4,22 +4,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import pt.ridenexus.vehicle.persistence.exception.FileDBAccessException;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleRepository;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-@Primary
 @Repository
-public class FileSystemRepository implements VehicleRepository {
+public class FileSystemVehicleRepository implements VehicleRepository {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FileSystemRepository.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FileSystemVehicleRepository.class);
     private static Long idSequence;
     private static final Map<Long, Vehicle> VEHICLES = new LinkedHashMap<>();
     private static final File SEQUENCE = new File("sequence");

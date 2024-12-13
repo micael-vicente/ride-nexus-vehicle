@@ -13,9 +13,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class VehicleDto {
     private Long id;
+    private String region;
+    private String make;
+    private String model;
+    private String version;
     private String alias;
     private String countryCode;
     private String licensePlate;
     private LocalDate licensePlateDate;
-    private double weight;
+    private Double weight;
+    private Integer mileage;
 }

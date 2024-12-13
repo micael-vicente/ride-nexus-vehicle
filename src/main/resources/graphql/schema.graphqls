@@ -4,24 +4,47 @@ type Query {
 }
 
 type Mutation {
-    addVehicle(vehicle: VehicleMutation): Vehicle
-    updateVehicle(id: ID, vehicle: VehicleMutation): Vehicle
+    addVehicle(vehicle: AddVehicle): Vehicle
+    updateVehicle(id: ID, vehicle: UpdateVehicle): Vehicle
     removeVehicle(id: ID): ID
 }
 
 type Vehicle {
     id: ID
     alias: String
+    region: String
+    make: String
+    model: String
+    version: String
     countryCode: String
     licensePlate: String
     licensePlateDate: String
     weight: Float
+    mileage: Int
 }
 
-input VehicleMutation {
+input AddVehicle {
     alias: String
+    region: String
+    make: String
+    model: String
+    version: String
     countryCode: String!
     licensePlate: String!
     licensePlateDate: String!
     weight: Float!
+    mileage: Int!
+}
+
+input UpdateVehicle {
+    alias: String
+    region: String
+    make: String
+    model: String
+    version: String
+    countryCode: String
+    licensePlate: String
+    licensePlateDate: String
+    weight: Float
+    mileage: Int
 }

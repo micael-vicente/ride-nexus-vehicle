@@ -1,21 +1,26 @@
-
-
 spring:
   graphql:
     graphiql:
       enabled: true
-#  datasource:
-#    type: com.zaxxer.hikari.HikariDataSource
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://${DB_HOST}:${DB_PORT:3306}/${DB_SCHEMA}?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-#    username: ${DB_USERNAME}
-#    password: ${DB_PASSWORD}
-#    initialization-mode: always
-#    hikari:
-#      connection-test-query: SELECT 1
-#      jdbc-url: ${spring.datasource.url}
-#      maximum-pool-size: 17
-#      minimum-idle: 10
-#      pool-name: customer-data
-#      username: ${spring.datasource.username}
-#      password: ${spring.datasource.password}
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    hikari:
+      connection-test-query: SELECT 1
+      jdbc-url: ${spring.datasource.url}
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+      schema: vehicles
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.default_schema: ${spring.datasource.hikari.schema}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    default-schema: ${spring.datasource.hikari.schema}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
