@@ -23,6 +23,6 @@ public class Vehicle {
     private String countryCode;
     private String licensePlate;
     private LocalDate licensePlateDate;
-    private Double weight;
+    private Integer weight;
     private Integer mileage;
 }

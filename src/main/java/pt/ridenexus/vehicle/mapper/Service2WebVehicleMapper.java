@@ -5,7 +5,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.web.api.VehicleDto;
-import pt.ridenexus.vehicle.web.api.VehicleMutationDto;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 public interface Service2WebVehicleMapper {
 
     @Mapping(target = "id", ignore = true)
-    Vehicle map(VehicleMutationDto source);
+    Vehicle map(VehicleDto source);
 
     VehicleDto map(Vehicle source);
 

@@ -14,6 +14,7 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface Service2PersistenceVehicleMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "modifiedAt", ignore = true)
     @Mapping(target = "createdBy", ignore = true)

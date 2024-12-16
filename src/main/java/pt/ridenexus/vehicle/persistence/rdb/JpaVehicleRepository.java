@@ -6,4 +6,7 @@ import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 
 @Repository
 public interface JpaVehicleRepository extends JpaRepository<VehicleEntity, Long> {
+
+    boolean existsByCountryCodeAndRegionAndLicensePlate(String countryCode, String region, String licensePlate);
+
 }

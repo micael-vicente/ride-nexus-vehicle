@@ -1,17 +1,16 @@
 package pt.ridenexus.vehicle.services;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class VehicleService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(VehicleService.class);
 
     private final VehicleServiceInterceptor interceptor;
     private final VehicleRepository repo;
@@ -19,9 +18,15 @@ public class VehicleService {
     public Vehicle addVehicle(Vehicle v) {
         interceptor.beforeAddVehicle(v);
 
-        LOG.info("Persisting vehicle with license plate: {}", v.getLicensePlate());
+        boolean vehicleExists = repo.vehicleExists(v.getCountryCode(), v.getRegion(), v.getLicensePlate());
+
+        log.info("Persisting vehicle with license plate: {}", v.getLicensePlate());
+        if(vehicleExists) {
+            log.info("Vehicle already exists for Country: {}, Region: {}, Plate: {}", v.getCountryCode(), v.getRegion(), v.getLicensePlate());
+            throw new VehicleExistsException();
+        }
         Vehicle vehicle = repo.addVehicle(v);
-        LOG.info("Vehicle with license plate: {} has been persisted", v.getLicensePlate());
+        log.info("Vehicle with license plate: {} has been persisted", v.getLicensePlate());
 
         interceptor.afterAddVehicle(v);
 
@@ -31,9 +36,9 @@ public class VehicleService {
     public Vehicle updateVehicle(Long id, Vehicle v) {
         interceptor.beforeUpdateVehicle(v);
 
-        LOG.info("Updating vehicle with license plate: {}", v.getLicensePlate());
+        log.info("Updating vehicle with license plate: {}", v.getLicensePlate());
         Vehicle vehicle = repo.updateVehicle(id, v);
-        LOG.info("Vehicle with license plate: {} has been updated", v.getLicensePlate());
+        log.info("Vehicle with license plate: {} has been updated", v.getLicensePlate());
 
         interceptor.afterUpdateVehicle(v);
 
@@ -43,9 +48,9 @@ public class VehicleService {
     public Long removeVehicle(Long id) {
         interceptor.beforeRemoveVehicle(id);
 
-        LOG.info("Removing vehicle with id: {}", id);
+        log.info("Removing vehicle with id: {}", id);
         Long removedId = repo.removeVehicle(id);
-        LOG.info("Vehicle with id: {} has been removed", id);
+        log.info("Vehicle with id: {} has been removed", id);
 
         interceptor.afterRemoveVehicle();
 
@@ -53,12 +58,12 @@ public class VehicleService {
     }
 
     public Vehicle getVehicle(Long id) {
-        LOG.info("Getting vehicle with id: {}", id);
+        log.info("Getting vehicle with id: {}", id);
         return repo.getVehicle(id);
     }
 
     public List<Vehicle> getVehicles() {
-        LOG.info("Getting all vehicles");
+        log.info("Getting all vehicles");
         return repo.getVehicles();
     }
 }

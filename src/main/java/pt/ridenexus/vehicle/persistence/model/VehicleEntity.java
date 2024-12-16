@@ -47,7 +47,7 @@ public class VehicleEntity extends BaseEntity {
     private LocalDate licensePlateDate;
 
     @Column(name = "weight")
-    private Double weight;
+    private Integer weight;
 
     @Column(name = "mileage")
     private Integer mileage;

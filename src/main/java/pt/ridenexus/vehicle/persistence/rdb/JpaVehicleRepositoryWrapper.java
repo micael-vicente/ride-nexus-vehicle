@@ -1,7 +1,6 @@
 package pt.ridenexus.vehicle.persistence.rdb;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapper;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
@@ -10,7 +9,6 @@ import pt.ridenexus.vehicle.services.VehicleRepository;
 
 import java.util.List;
 
-@Primary
 @Repository
 @RequiredArgsConstructor
 public class JpaVehicleRepositoryWrapper implements VehicleRepository {
@@ -58,5 +56,10 @@ public class JpaVehicleRepositoryWrapper implements VehicleRepository {
         VehicleEntity vehicle = repo.findById(id).orElse(null);
 
         return mapper.map(vehicle);
+    }
+
+    @Override
+    public boolean vehicleExists(String country, String region, String licensePlate) {
+        return repo.existsByCountryCodeAndRegionAndLicensePlate(country, region, licensePlate);
     }
 }

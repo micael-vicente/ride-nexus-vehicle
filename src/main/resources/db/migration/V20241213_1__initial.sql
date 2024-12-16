@@ -15,7 +15,7 @@ create table if not exists vehicle
     modified_at        timestamp     not null,
     created_by         varchar(50)   not null,
     modified_by        varchar(50)   not null,
-    UNIQUE(country_code, region, license_plate)
+    UNIQUE NULLS NOT DISTINCT(country_code, region, license_plate)
 );
 
 CREATE INDEX idx_lic_plate ON vehicle (license_plate);
