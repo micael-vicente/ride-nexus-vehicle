@@ -12,11 +12,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehicleService {
 
-    private final VehicleServiceInterceptor interceptor;
     private final VehicleRepository repo;
 
+    /**
+     * Adds a new vehicle if it does not already exist.
+     * A vehicle exists if the combo Country, Region, License Plate has already been used.
+     *
+     * @param v the vehicle to be added
+     * @return the vehicle after being added
+     */
     public Vehicle addVehicle(Vehicle v) {
-        interceptor.beforeAddVehicle(v);
 
         boolean vehicleExists = repo.vehicleExists(v.getCountryCode(), v.getRegion(), v.getLicensePlate());
 
@@ -28,40 +33,56 @@ public class VehicleService {
         Vehicle vehicle = repo.addVehicle(v);
         log.info("Vehicle with license plate: {} has been persisted", v.getLicensePlate());
 
-        interceptor.afterAddVehicle(v);
-
         return vehicle;
     }
 
+    /**
+     * Updates a vehicle by merging the input object into the existing one.
+     *
+     * @param id the id of the existing vehicle
+     * @param v the input object
+     * @return the vehicle after being updated
+     */
     public Vehicle updateVehicle(Long id, Vehicle v) {
-        interceptor.beforeUpdateVehicle(v);
 
         log.info("Updating vehicle with license plate: {}", v.getLicensePlate());
         Vehicle vehicle = repo.updateVehicle(id, v);
         log.info("Vehicle with license plate: {} has been updated", v.getLicensePlate());
 
-        interceptor.afterUpdateVehicle(v);
-
         return vehicle;
     }
 
+    /**
+     * Removes vehicle with given id.
+     *
+     * @param id the id of the vehicle to be removed
+     * @return the id of the vehicle removed
+     */
     public Long removeVehicle(Long id) {
-        interceptor.beforeRemoveVehicle(id);
 
         log.info("Removing vehicle with id: {}", id);
         Long removedId = repo.removeVehicle(id);
         log.info("Vehicle with id: {} has been removed", id);
 
-        interceptor.afterRemoveVehicle();
-
         return removedId;
     }
 
+    /**
+     * Gets a vehicle by id.
+     *
+     * @param id the id of the vehicle to fetch
+     * @return the vehicle if found, otherwise null
+     */
     public Vehicle getVehicle(Long id) {
         log.info("Getting vehicle with id: {}", id);
         return repo.getVehicle(id);
     }
 
+    /**
+     * Returns all vehicles.
+     *
+     * @return all persisted vehicles
+     */
     public List<Vehicle> getVehicles() {
         log.info("Getting all vehicles");
         return repo.getVehicles();

@@ -6,6 +6,7 @@ import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapper;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleRepository;
+import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class JpaVehicleRepositoryWrapper implements VehicleRepository {
         VehicleEntity vehicle = repo.findById(id).orElse(null);
 
         if(vehicle == null) {
-            return null;
+            throw new ObjectNotFoundException("Vehicle not found. Id: " + id);
         }
 
         mapper.update(v, vehicle);
