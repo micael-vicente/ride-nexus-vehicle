@@ -2,8 +2,6 @@ package pt.ridenexus.vehicle.services;
 
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface VehicleRepository {
 
     /**
@@ -30,13 +28,6 @@ public interface VehicleRepository {
      * @return the id that has been removed
      */
     Long removeVehicle(Long id);
-
-    /**
-     * Gets all vehicles.
-     *
-     * @return a list of all persisted vehicles
-     */
-    List<Vehicle> getVehicles();
 
     /**
      * Gets vehicles in a paginated manner.

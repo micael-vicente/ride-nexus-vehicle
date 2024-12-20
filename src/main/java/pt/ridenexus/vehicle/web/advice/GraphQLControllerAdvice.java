@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
 
+import java.util.Optional;
+
 @RestControllerAdvice
 public class GraphQLControllerAdvice extends DataFetcherExceptionResolverAdapter {
 
@@ -30,7 +32,7 @@ public class GraphQLControllerAdvice extends DataFetcherExceptionResolverAdapter
     private GraphQLError toGraphQLError(ErrorType errorType, String message) {
         return GraphQLError.newError()
                 .errorType(errorType)
-                .message(message)
+                .message(Optional.ofNullable(message).orElse("Unknown error"))
                 .build();
     }
 }

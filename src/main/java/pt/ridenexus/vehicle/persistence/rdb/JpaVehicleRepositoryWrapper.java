@@ -10,8 +10,6 @@ import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleRepository;
 import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 
-import java.util.List;
-
 @Repository
 @RequiredArgsConstructor
 public class JpaVehicleRepositoryWrapper implements VehicleRepository {
@@ -45,13 +43,6 @@ public class JpaVehicleRepositoryWrapper implements VehicleRepository {
     public Long removeVehicle(Long id) {
         repo.deleteById(id);
         return id;
-    }
-
-    @Override
-    public List<Vehicle> getVehicles() {
-        List<VehicleEntity> vehicles = repo.findAll();
-
-        return mapper.map(vehicles);
     }
 
     @Override

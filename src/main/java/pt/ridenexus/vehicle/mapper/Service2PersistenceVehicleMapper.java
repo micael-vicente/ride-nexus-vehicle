@@ -9,8 +9,6 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import pt.ridenexus.vehicle.services.Vehicle;
 
-import java.util.List;
-
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface Service2PersistenceVehicleMapper {
 
@@ -20,8 +18,6 @@ public interface Service2PersistenceVehicleMapper {
     @Mapping(target = "createdBy", ignore = true)
     @Mapping(target = "modifiedBy", ignore = true)
     VehicleEntity map(Vehicle source);
-
-    List<Vehicle> map(List<VehicleEntity> source);
 
     Vehicle map(VehicleEntity source);
 
