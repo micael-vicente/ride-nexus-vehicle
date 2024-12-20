@@ -1,5 +1,7 @@
 package pt.ridenexus.vehicle.services;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public interface VehicleRepository {
@@ -35,6 +37,15 @@ public interface VehicleRepository {
      * @return a list of all persisted vehicles
      */
     List<Vehicle> getVehicles();
+
+    /**
+     * Gets vehicles in a paginated manner.
+     *
+     * @param pageNumber page number
+     * @param pageSize elements per page
+     * @return results in a paginated manner
+     */
+    Page<Vehicle> getVehicles(int pageNumber, int pageSize);
 
     /**
      * Gets a vehicle by id.

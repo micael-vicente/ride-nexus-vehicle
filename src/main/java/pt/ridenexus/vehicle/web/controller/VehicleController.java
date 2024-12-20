@@ -1,6 +1,7 @@
 package pt.ridenexus.vehicle.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import pt.ridenexus.vehicle.mapper.Service2WebVehicleMapper;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleService;
+import pt.ridenexus.vehicle.web.api.PageDto;
+import pt.ridenexus.vehicle.web.api.PageInfoDto;
 import pt.ridenexus.vehicle.web.api.VehicleDto;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.AddVehicle;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.UpdateVehicle;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -51,9 +54,19 @@ public class VehicleController {
     }
 
     @QueryMapping
-    public List<VehicleDto> getVehicles() {
-        List<Vehicle> vehicles = service.getVehicles();
+    public PageDto<VehicleDto> getVehicles(@Argument Integer pageNumber, @Argument Integer pageSize) {
+        Integer number = Optional.ofNullable(pageNumber).orElse(0);
+        Integer size = Optional.ofNullable(pageSize).orElse(10);
 
-        return mapper.map(vehicles);
+        Page<VehicleDto> vehicles = service.getVehicles(number, size).map(mapper::map);
+
+        return PageDto.<VehicleDto>builder()
+            .content(vehicles.getContent())
+            .pageInfo(PageInfoDto.builder()
+                .pageNumber(vehicles.getNumber())
+                .pageSize(vehicles.getSize())
+                .totalElements(vehicles.getNumberOfElements())
+                .build())
+            .build();
     }
 }

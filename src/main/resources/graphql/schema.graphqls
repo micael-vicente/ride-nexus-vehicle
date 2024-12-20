@@ -1,12 +1,23 @@
 type Query {
     getVehicleById(id: ID): Vehicle
-    getVehicles: [Vehicle]
+    getVehicles(pageNumber: Int, pageSize: Int): Page
 }
 
 type Mutation {
     addVehicle(vehicle: AddVehicle): Vehicle
     updateVehicle(id: ID, vehicle: UpdateVehicle): Vehicle
     removeVehicle(id: ID): ID
+}
+
+type Pageable {
+    pageNumber: Int
+    pageSize: Int
+    totalElements: Int
+}
+
+type Page {
+    content: [Vehicle]
+    pageInfo: Pageable
 }
 
 type Vehicle {

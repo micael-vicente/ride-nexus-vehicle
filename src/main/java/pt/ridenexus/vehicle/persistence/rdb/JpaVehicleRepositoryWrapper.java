@@ -1,6 +1,8 @@
 package pt.ridenexus.vehicle.persistence.rdb;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapper;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
@@ -50,6 +52,12 @@ public class JpaVehicleRepositoryWrapper implements VehicleRepository {
         List<VehicleEntity> vehicles = repo.findAll();
 
         return mapper.map(vehicles);
+    }
+
+    @Override
+    public Page<Vehicle> getVehicles(int pageNumber, int pageSize) {
+        return repo.findAll(PageRequest.of(pageNumber, pageSize))
+                .map(mapper::map);
     }
 
     @Override

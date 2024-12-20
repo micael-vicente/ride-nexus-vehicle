@@ -2,10 +2,9 @@ package pt.ridenexus.vehicle.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -83,8 +82,8 @@ public class VehicleService {
      *
      * @return all persisted vehicles
      */
-    public List<Vehicle> getVehicles() {
+    public Page<Vehicle> getVehicles(int pageNumber, int pageSize) {
         log.info("Getting all vehicles");
-        return repo.getVehicles();
+        return repo.getVehicles(pageNumber, pageSize);
     }
 }
