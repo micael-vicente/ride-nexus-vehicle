@@ -13,6 +13,8 @@ type Pageable {
     pageNumber: Int
     pageSize: Int
     totalElements: Int
+    numberOfElements: Int
+    totalPages: Int
 }
 
 type Page {

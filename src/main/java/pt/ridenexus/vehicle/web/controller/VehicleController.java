@@ -12,7 +12,6 @@ import pt.ridenexus.vehicle.mapper.Service2WebVehicleMapper;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleService;
 import pt.ridenexus.vehicle.web.api.PageDto;
-import pt.ridenexus.vehicle.web.api.PageInfoDto;
 import pt.ridenexus.vehicle.web.api.VehicleDto;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.AddVehicle;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.UpdateVehicle;
@@ -60,13 +59,6 @@ public class VehicleController {
 
         Page<VehicleDto> vehicles = service.getVehicles(number, size).map(mapper::map);
 
-        return PageDto.<VehicleDto>builder()
-            .content(vehicles.getContent())
-            .pageInfo(PageInfoDto.builder()
-                .pageNumber(vehicles.getNumber())
-                .pageSize(vehicles.getSize())
-                .totalElements(vehicles.getNumberOfElements())
-                .build())
-            .build();
+        return mapper.map(vehicles);
     }
 }

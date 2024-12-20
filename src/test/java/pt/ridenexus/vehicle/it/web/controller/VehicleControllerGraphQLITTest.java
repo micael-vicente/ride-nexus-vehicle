@@ -1,12 +1,14 @@
 package pt.ridenexus.vehicle.it.web.controller;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.test.tester.HttpGraphQlTester;
 import pt.ridenexus.vehicle.it.containers.BaseITTest;
 import pt.ridenexus.vehicle.it.fixtures.GraphQLDocuments;
 import pt.ridenexus.vehicle.it.fixtures.VehiclesFixture;
+import pt.ridenexus.vehicle.persistence.rdb.JpaVehicleRepository;
 import pt.ridenexus.vehicle.services.Vehicle;
 import pt.ridenexus.vehicle.services.VehicleRepository;
 
@@ -22,6 +24,14 @@ class VehicleControllerGraphQLITTest extends BaseITTest {
 
     @Autowired
     VehicleRepository repository;
+
+    @Autowired
+    JpaVehicleRepository myRepo;
+
+    @BeforeEach
+    void cleanUp() {
+        myRepo.deleteAll();
+    }
 
     @Test
     void testAddVehicleIsSuccessful() {
@@ -70,7 +80,7 @@ class VehicleControllerGraphQLITTest extends BaseITTest {
 
         List<Vehicle> vehicles = repository.getVehicles();
 
-        Assertions.assertEquals(5, vehicles.size());
+        Assertions.assertEquals(expectedVehicles, vehicles.size());
 
         graphQlTester.document(GraphQLDocuments.getAllVehicles(List.of("id")))
             .execute()

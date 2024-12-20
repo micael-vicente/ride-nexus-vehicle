@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageInfoDto {
-    private Integer pageNumber;
-    private Integer pageSize;
-    private Integer totalElements;
+    private int pageNumber;
+    private int pageSize;
+    private long totalElements;
+    private long numberOfElements;
+    private int totalPages;
 }
