@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.test.tester.HttpGraphQlTester;
-import pt.ridenexus.vehicle.it.containers.BaseITTest;
+import pt.ridenexus.vehicle.it.containers.BaseIT;
 import pt.ridenexus.vehicle.it.fixtures.GraphQLDocuments;
 import pt.ridenexus.vehicle.it.fixtures.VehiclesFixture;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-class VehicleControllerGraphQLITTest extends BaseITTest {
+class VehicleControllerGraphQlIT extends BaseIT {
 
     @Autowired
     HttpGraphQlTester graphQlTester;

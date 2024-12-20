@@ -10,9 +10,9 @@ import org.testcontainers.utility.MountableFile;
 
 //suppressed because it is a false positive - https://stackoverflow.com/a/75454305/2966971
 @SuppressWarnings("resource")
-@Tag("ITTest")
+@Tag("IntegrationTest")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public abstract class BaseITTest {
+public abstract class BaseIT {
 
     static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:17.2"))
         .withDatabaseName("postgres")
