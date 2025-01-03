@@ -46,14 +46,14 @@ public class VehicleController {
     }
 
     @QueryMapping
-    public VehicleDto getVehicleById(@Argument Long id) {
+    public VehicleDto vehicleById(@Argument Long id) {
         Vehicle vehicle = service.getVehicle(id);
 
         return mapper.map(vehicle);
     }
 
     @QueryMapping
-    public PageDto<VehicleDto> getVehicles(@Argument Integer pageNumber, @Argument Integer pageSize) {
+    public PageDto<VehicleDto> vehicles(@Argument Integer pageNumber, @Argument Integer pageSize) {
         Integer number = Optional.ofNullable(pageNumber).orElse(0);
         Integer size = Optional.ofNullable(pageSize).orElse(10);
 

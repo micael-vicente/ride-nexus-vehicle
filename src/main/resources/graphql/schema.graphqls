@@ -1,11 +1,11 @@
 type Query {
-    getVehicleById(id: ID): Vehicle
-    getVehicles(pageNumber: Int, pageSize: Int): Page
+    vehicleById(id: ID): Vehicle
+    vehicles(pageNumber: Int, pageSize: Int): Page
 }
 
 type Mutation {
-    addVehicle(vehicle: AddVehicle): Vehicle
-    updateVehicle(id: ID, vehicle: UpdateVehicle): Vehicle
+    addVehicle(vehicle: AddVehicleInput): Vehicle
+    updateVehicle(id: ID, vehicle: UpdateVehicleInput): Vehicle
     removeVehicle(id: ID): ID
 }
 
@@ -36,7 +36,7 @@ type Vehicle {
     mileage: Int
 }
 
-input AddVehicle {
+input AddVehicleInput {
     alias: String
     region: String
     make: String
@@ -49,7 +49,7 @@ input AddVehicle {
     mileage: Int
 }
 
-input UpdateVehicle {
+input UpdateVehicleInput {
     alias: String
     make: String
     model: String
