@@ -6,7 +6,7 @@ public class GraphQLDocuments {
 
     public static String addVehicle() {
         return """
-            mutation AddVehicle($vehicle: AddVehicle) {
+            mutation AddVehicle($vehicle: AddVehicleInput) {
               addVehicle(vehicle: $vehicle) {
                 id
               }
@@ -25,7 +25,7 @@ public class GraphQLDocuments {
     public static String getAllVehicles(List<String> fields) {
         return """
             query GetVehicles {
-              getVehicles(pageNumber: 0, pageSize: 100) {
+              vehicles(pageNumber: 0, pageSize: 100) {
                 content {
                   {fields}
                 }
@@ -42,7 +42,7 @@ public class GraphQLDocuments {
     public static String getById(List<String> fields) {
         return """
             query GetVehicleById($id: ID) {
-              getVehicleById(id: $id) {
+              vehicleById(id: $id) {
                 {fields}
               }
             }
@@ -51,7 +51,7 @@ public class GraphQLDocuments {
 
     public static String updateVehicle() {
         return """
-            mutation UpdateVehicle($id: ID, $vehicle: UpdateVehicle) {
+            mutation UpdateVehicle($id: ID, $vehicle: UpdateVehicleInput) {
               updateVehicle(id: $id, vehicle: $vehicle) {
                 id
               }

@@ -173,7 +173,7 @@ class VehicleControllerGraphQlIT extends BaseIT {
         graphQlTester.document(GraphQLDocuments.getById(List.of("licensePlate")))
             .variable("id", all.getFirst().getId())
             .execute()
-            .path("getVehicleById.licensePlate")
+            .path("vehicleById.licensePlate")
             .entity(String.class)
             .isEqualTo(licensePlate);
     }
@@ -276,7 +276,7 @@ class VehicleControllerGraphQlIT extends BaseIT {
 
         graphQlTester.document(GraphQLDocuments.getAllVehicles(List.of("id")))
             .execute()
-            .path("getVehicles.content[*].id")
+            .path("vehicles.content[*].id")
             .entityList(Long.class)
             .hasSize(expectedVehicles);
     }
