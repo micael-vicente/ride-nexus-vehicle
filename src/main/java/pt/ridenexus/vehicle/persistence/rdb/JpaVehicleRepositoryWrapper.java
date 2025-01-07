@@ -52,6 +52,12 @@ public class JpaVehicleRepositoryWrapper implements VehicleRepository {
     }
 
     @Override
+    public Page<Vehicle> getVehiclesByOwner(String ownerId, int pageNumber, int pageSize) {
+        return repo.findAllByOwnerId(ownerId, PageRequest.of(pageNumber, pageSize))
+            .map(mapper::map);
+    }
+
+    @Override
     public Vehicle getVehicle(Long id) {
         VehicleEntity vehicle = repo.findById(id).orElse(null);
 

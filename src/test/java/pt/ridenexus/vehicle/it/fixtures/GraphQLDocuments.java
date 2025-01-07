@@ -58,4 +58,21 @@ public class GraphQLDocuments {
             }
         """;
     }
+
+    public static String getByOwnerId(List<String> fields) {
+        return """
+            query GetVehicles($owner: String) {
+              vehiclesByOwnerId(ownerId: $owner, pageNumber: 0, pageSize: 100) {
+                content {
+                  {fields}
+                }
+                pageInfo {
+                  pageNumber
+                  pageSize
+                  totalElements
+                }
+              }
+            }
+        """.replace("{fields}", String.join("\n", fields));
+    }
 }

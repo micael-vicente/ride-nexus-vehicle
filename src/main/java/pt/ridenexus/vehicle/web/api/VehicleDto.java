@@ -24,6 +24,7 @@ public class VehicleDto {
     private String model;
     private String version;
     private String alias;
+    private String ownerId;
 
     @IsKnownCountry
     @NotBlank(groups = AddVehicle.class)

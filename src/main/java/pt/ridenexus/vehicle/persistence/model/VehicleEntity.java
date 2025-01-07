@@ -43,6 +43,9 @@ public class VehicleEntity extends BaseEntity {
     @Column(name = "license_plate")
     private String licensePlate;
 
+    @Column(name = "owner_id")
+    private String ownerId;
+
     @Column(name = "license_plate_date")
     private LocalDate licensePlateDate;
 

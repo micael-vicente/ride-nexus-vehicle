@@ -86,4 +86,14 @@ public class VehicleService {
         log.info("Getting all vehicles");
         return repo.getVehicles(pageNumber, pageSize);
     }
+
+    /**
+     * Returns all vehicles.
+     *
+     * @return all persisted vehicles
+     */
+    public Page<Vehicle> getVehiclesByOwner(String ownerId, int pageNumber, int pageSize) {
+        log.info("Getting all vehicles with owner: {}", ownerId);
+        return repo.getVehiclesByOwner(ownerId, pageNumber, pageSize);
+    }
 }

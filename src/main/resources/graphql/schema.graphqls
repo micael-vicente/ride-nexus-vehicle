@@ -1,6 +1,7 @@
 type Query {
     vehicleById(id: ID): Vehicle
     vehicles(pageNumber: Int, pageSize: Int): Page
+    vehiclesByOwnerId(ownerId: String, pageNumber: Int, pageSize: Int): Page
 }
 
 type Mutation {
@@ -34,6 +35,7 @@ type Vehicle {
     licensePlateDate: String
     weight: Int
     mileage: Int
+    ownerId: String
 }
 
 input AddVehicleInput {
@@ -47,6 +49,7 @@ input AddVehicleInput {
     licensePlateDate: String
     weight: Int
     mileage: Int
+    ownerId: String
 }
 
 input UpdateVehicleInput {
@@ -57,4 +60,5 @@ input UpdateVehicleInput {
     licensePlateDate: String
     weight: Int
     mileage: Int
+    ownerId: String
 }

@@ -61,4 +61,14 @@ public class VehicleController {
 
         return mapper.map(vehicles);
     }
+
+    @QueryMapping
+    public PageDto<VehicleDto> vehiclesByOwnerId(@Argument String ownerId, @Argument Integer pageNumber, @Argument Integer pageSize) {
+        Integer number = Optional.ofNullable(pageNumber).orElse(0);
+        Integer size = Optional.ofNullable(pageSize).orElse(10);
+
+        Page<VehicleDto> vehicles = service.getVehiclesByOwner(ownerId, number, size).map(mapper::map);
+
+        return mapper.map(vehicles);
+    }
 }

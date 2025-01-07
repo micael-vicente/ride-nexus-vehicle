@@ -39,6 +39,15 @@ public interface VehicleRepository {
     Page<Vehicle> getVehicles(int pageNumber, int pageSize);
 
     /**
+     * Gets all vehicles belonging to given owner.
+     * @param ownerId the id of the owner
+     * @param pageNumber the number of the page
+     * @param pageSize the number of elements per page
+     * @return a paginated result set
+     */
+    Page<Vehicle> getVehiclesByOwner(String ownerId,int pageNumber, int pageSize);
+
+    /**
      * Gets a vehicle by id.
      *
      * @param id the id of the vehicle to get

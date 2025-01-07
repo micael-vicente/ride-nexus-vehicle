@@ -22,6 +22,7 @@ public class Vehicle {
     private String alias;
     private String countryCode;
     private String licensePlate;
+    private String ownerId;
     private LocalDate licensePlateDate;
     private Integer weight;
     private Integer mileage;
