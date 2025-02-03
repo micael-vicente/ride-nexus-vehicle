@@ -1,6 +1,6 @@
 create table if not exists vehicle
 (
-    id                 serial        primary key,
+    id                 integer       primary key generated always as identity,
     alias              varchar(50),
     country_code       varchar(50)   not null,
     region             varchar(50),

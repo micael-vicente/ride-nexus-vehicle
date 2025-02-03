@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.unit.web.advice;
+package pt.ridenexus.vehicle.web.advice;
 
 import graphql.ErrorType;
 import graphql.GraphQLError;
@@ -8,7 +8,6 @@ import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindException;
-import pt.ridenexus.vehicle.web.advice.GraphQLControllerAdvice;
 import reactor.core.publisher.Mono;
 
 import java.util.List;

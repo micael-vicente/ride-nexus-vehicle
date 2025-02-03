@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.it.containers;
+package pt.ridenexus.vehicle.containers;
 
 import lombok.AccessLevel;
 import lombok.Getter;

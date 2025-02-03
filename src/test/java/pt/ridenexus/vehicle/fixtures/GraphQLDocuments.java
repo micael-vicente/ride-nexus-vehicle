@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.it.fixtures;
+package pt.ridenexus.vehicle.fixtures;
 
 import java.util.List;
 

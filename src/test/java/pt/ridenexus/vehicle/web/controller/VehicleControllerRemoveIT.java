@@ -1,12 +1,12 @@
-package pt.ridenexus.vehicle.it.web.controller;
+package pt.ridenexus.vehicle.web.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.test.tester.HttpGraphQlTester;
-import pt.ridenexus.vehicle.it.containers.BaseIT;
-import pt.ridenexus.vehicle.it.fixtures.GraphQLDocuments;
-import pt.ridenexus.vehicle.it.fixtures.VehiclesFixture;
+import pt.ridenexus.vehicle.containers.BaseIT;
+import pt.ridenexus.vehicle.fixtures.GraphQLDocuments;
+import pt.ridenexus.vehicle.fixtures.VehiclesFixture;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import pt.ridenexus.vehicle.persistence.rdb.JpaVehicleRepository;
 

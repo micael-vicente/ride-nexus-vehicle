@@ -1,11 +1,8 @@
-package pt.ridenexus.vehicle.unit.services;
+package pt.ridenexus.vehicle.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import pt.ridenexus.vehicle.services.Vehicle;
-import pt.ridenexus.vehicle.services.VehicleRepository;
-import pt.ridenexus.vehicle.services.VehicleService;
 import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
 
 import static org.mockito.ArgumentMatchers.any;

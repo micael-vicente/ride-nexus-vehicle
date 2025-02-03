@@ -2,25 +2,20 @@ package pt.ridenexus.vehicle.persistence.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity(name = "vehicle")
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id"}, callSuper = false)
 public class VehicleEntity extends BaseEntity {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "make")
     private String make;
@@ -54,4 +49,20 @@ public class VehicleEntity extends BaseEntity {
 
     @Column(name = "mileage")
     private Integer mileage;
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = getEffectiveClass(o);
+        Class<?> thisEffectiveClass = getEffectiveClass(this);
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        VehicleEntity vehicle = (VehicleEntity) o;
+        return getId() != null && Objects.equals(getId(), vehicle.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return getEffectiveClass(this).hashCode();
+    }
 }
