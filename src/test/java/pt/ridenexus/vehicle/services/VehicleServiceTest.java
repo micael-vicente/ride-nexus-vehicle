@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
+import pt.ridenexus.vehicle.services.vehicle.Vehicle;
+import pt.ridenexus.vehicle.services.vehicle.VehicleRepository;
+import pt.ridenexus.vehicle.services.vehicle.VehicleService;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;

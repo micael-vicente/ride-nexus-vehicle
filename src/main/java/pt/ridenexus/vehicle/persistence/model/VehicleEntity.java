@@ -29,26 +29,32 @@ public class VehicleEntity extends BaseEntity {
     @Column(name = "alias")
     private String alias;
 
-    @Column(name = "country_code")
+    @Column(name = "country_code", nullable = false)
     private String countryCode;
 
     @Column(name = "region")
     private String region;
 
-    @Column(name = "license_plate")
+    @Column(name = "license_plate", nullable = false)
     private String licensePlate;
 
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", nullable = false)
     private String ownerId;
 
-    @Column(name = "license_plate_date")
+    @Column(name = "license_plate_date", nullable = false)
     private LocalDate licensePlateDate;
 
-    @Column(name = "weight")
+    @Column(name = "weight", nullable = false)
     private Integer weight;
 
-    @Column(name = "mileage")
+    @Column(name = "mileage", nullable = false)
     private Integer mileage;
+
+    @Column(name = "status", nullable = false)
+    private String status;
+
+    @Column(name = "vehicle_type", nullable = false)
+    private String vehicleType;
 
     @Override
     public final boolean equals(Object o) {

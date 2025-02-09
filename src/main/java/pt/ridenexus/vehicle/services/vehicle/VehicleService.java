@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.services;
+package pt.ridenexus.vehicle.services.vehicle;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -6,8 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapper;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
-import pt.ridenexus.vehicle.services.Vehicle;
-import pt.ridenexus.vehicle.services.VehicleRepository;
+import pt.ridenexus.vehicle.services.vehicle.Vehicle;
+import pt.ridenexus.vehicle.services.vehicle.VehicleRepository;
 import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 
 @Repository

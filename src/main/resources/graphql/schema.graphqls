@@ -1,14 +1,6 @@
-type Query {
-    vehicleById(id: ID): Vehicle
-    vehicles(pageNumber: Int, pageSize: Int): Page
-    vehiclesByOwnerId(ownerId: String, pageNumber: Int, pageSize: Int): Page
-}
+type Query {}
 
-type Mutation {
-    addVehicle(vehicle: AddVehicleInput): Vehicle
-    updateVehicle(id: ID, vehicle: UpdateVehicleInput): Vehicle
-    removeVehicle(id: ID): ID
-}
+type Mutation {}
 
 type Pageable {
     pageNumber: Int
@@ -19,46 +11,8 @@ type Pageable {
 }
 
 type Page {
-    content: [Vehicle]
     pageInfo: Pageable
+    content: [Content]
 }
 
-type Vehicle {
-    id: ID
-    alias: String
-    region: String
-    make: String
-    model: String
-    version: String
-    countryCode: String
-    licensePlate: String
-    licensePlateDate: String
-    weight: Int
-    mileage: Int
-    ownerId: String
-}
-
-input AddVehicleInput {
-    alias: String
-    region: String
-    make: String
-    model: String
-    version: String
-    countryCode: String
-    licensePlate: String
-    licensePlateDate: String
-    weight: Int
-    mileage: Int
-    ownerId: String
-}
-
-input UpdateVehicleInput {
-    alias: String
-    make: String
-    model: String
-    version: String
-    licensePlateDate: String
-    weight: Int
-    mileage: Int
-    ownerId: String
-}
+union Content = VehicleDto | TrailerDto

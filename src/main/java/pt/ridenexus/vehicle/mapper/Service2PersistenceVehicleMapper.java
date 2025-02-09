@@ -7,7 +7,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
-import pt.ridenexus.vehicle.services.Vehicle;
+import pt.ridenexus.vehicle.services.vehicle.Vehicle;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface Service2PersistenceVehicleMapper {

@@ -9,7 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pt.ridenexus.vehicle.services.vehicle.VehicleStatus;
+import pt.ridenexus.vehicle.services.vehicle.VehicleType;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.AddVehicle;
+import pt.ridenexus.vehicle.web.validation.annotation.IsEnumMember;
 import pt.ridenexus.vehicle.web.validation.annotation.IsKnownCountry;
 import pt.ridenexus.vehicle.web.validation.annotation.ValidDateFormat;
 
@@ -25,6 +28,14 @@ public class VehicleDto {
     private String version;
     private String alias;
     private String ownerId;
+
+    @NotNull(groups = AddVehicle.class)
+    @IsEnumMember(enumClass = VehicleType.class, appendValuesToMessage = true)
+    private String vehicleType;
+
+    @NotNull(groups = AddVehicle.class)
+    @IsEnumMember(enumClass = VehicleStatus.class, appendValuesToMessage = true)
+    private String status;
 
     @IsKnownCountry
     @NotBlank(groups = AddVehicle.class)

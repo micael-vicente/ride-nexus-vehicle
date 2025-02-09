@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.services;
+package pt.ridenexus.vehicle.services.vehicle;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +19,8 @@ public class Vehicle {
     private String make;
     private String model;
     private String version;
+    private VehicleType vehicleType;
+    private VehicleStatus status;
     private String alias;
     private String countryCode;
     private String licensePlate;

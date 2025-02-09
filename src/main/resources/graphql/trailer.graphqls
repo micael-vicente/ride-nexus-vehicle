@@ -1,0 +1,59 @@
+extend type Query {
+    trailerById(id: ID): TrailerDto
+    trailers(pageNumber: Int, pageSize: Int): Page
+    trailersByOwnerId(ownerId: String, pageNumber: Int, pageSize: Int): Page
+}
+
+extend type Mutation {
+    addTrailer(trailer: AddTrailerInput): TrailerDto
+    updateTrailer(id: ID, trailer: UpdateTrailerInput): TrailerDto
+    removeTrailer(id: ID): ID
+}
+
+type TrailerDto {
+    id: ID
+    ownerId: String
+    trailerType: String
+    status: String
+    maximumFreightWeight: Float
+    fdLengthCentimeters: Float
+    fdWidthCentimeters: Float
+    fdHeightCentimeters: Float
+    mdLengthCentimeters: Float
+    mdWidthCentimeters: Float
+    mdHeightCentimeters: Float
+    rdLengthCentimeters: Float
+    rdWidthCentimeters: Float
+    rdHeightCentimeters: Float
+}
+
+input AddTrailerInput {
+    ownerId: String
+    trailerType: String
+    status: String
+    maximumFreightWeight: Float
+    fdLengthCentimeters: Float
+    fdWidthCentimeters: Float
+    fdHeightCentimeters: Float
+    mdLengthCentimeters: Float
+    mdWidthCentimeters: Float
+    mdHeightCentimeters: Float
+    rdLengthCentimeters: Float
+    rdWidthCentimeters: Float
+    rdHeightCentimeters: Float
+}
+
+input UpdateTrailerInput {
+    ownerId: String
+    status: String
+    maximumFreightWeight: Float
+    fdLengthCentimeters: Float
+    fdWidthCentimeters: Float
+    fdHeightCentimeters: Float
+    mdLengthCentimeters: Float
+    mdWidthCentimeters: Float
+    mdHeightCentimeters: Float
+    rdLengthCentimeters: Float
+    rdWidthCentimeters: Float
+    rdHeightCentimeters: Float
+}

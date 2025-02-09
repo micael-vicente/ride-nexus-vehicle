@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.services;
+package pt.ridenexus.vehicle.services.vehicle;
 
 import org.springframework.data.domain.Page;
 
