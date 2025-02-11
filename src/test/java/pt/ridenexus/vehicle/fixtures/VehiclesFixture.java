@@ -8,6 +8,9 @@ public class VehiclesFixture {
         return Map.of(
             "countryCode", country,
             "licensePlate", licensePlate,
+            "status", "BUSY",
+            "ownerId", "1",
+            "vehicleType", "MOTORCYCLE",
             "licensePlateDate", "2024-12-19",
             "weight", 1000,
             "mileage", 1

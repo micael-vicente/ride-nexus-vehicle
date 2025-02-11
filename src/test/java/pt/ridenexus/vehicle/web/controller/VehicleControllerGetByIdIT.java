@@ -10,7 +10,7 @@ import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import java.util.List;
 import java.util.Map;
 
-public class VehicleControllerGetByIdIT extends BaseIT {
+class VehicleControllerGetByIdIT extends BaseIT {
 
 
     @Test

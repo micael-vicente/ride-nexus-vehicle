@@ -10,7 +10,7 @@ import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class VehicleControllerGetAllIT extends BaseIT {
+class VehicleControllerGetAllIT extends BaseIT {
 
     @Test
     void testGetAllVehiclesShouldReturnAllVehicles() {

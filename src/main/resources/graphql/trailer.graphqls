@@ -15,6 +15,9 @@ type TrailerDto {
     ownerId: String
     trailerType: String
     status: String
+    countryCode: String
+    licensePlate: String
+    region: String
     maximumFreightWeight: Float
     fdLengthCentimeters: Float
     fdWidthCentimeters: Float
@@ -31,6 +34,9 @@ input AddTrailerInput {
     ownerId: String
     trailerType: String
     status: String
+    countryCode: String
+    licensePlate: String
+    region: String
     maximumFreightWeight: Float
     fdLengthCentimeters: Float
     fdWidthCentimeters: Float

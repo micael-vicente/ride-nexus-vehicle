@@ -27,7 +27,9 @@ public class GraphQLDocuments {
             query GetVehicles {
               vehicles(pageNumber: 0, pageSize: 100) {
                 content {
-                  {fields}
+                  ... on VehicleDto {
+                    {fields}
+                  }
                 }
                 pageInfo {
                   pageNumber
@@ -64,7 +66,9 @@ public class GraphQLDocuments {
             query GetVehicles($owner: String) {
               vehiclesByOwnerId(ownerId: $owner, pageNumber: 0, pageSize: 100) {
                 content {
-                  {fields}
+                  ... on VehicleDto {
+                    {fields}
+                  }
                 }
                 pageInfo {
                   pageNumber

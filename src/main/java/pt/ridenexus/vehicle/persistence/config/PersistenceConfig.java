@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ridenexus.vehicle.persistence.rdb.JpaRepositoriesConfig;
+import pt.ridenexus.vehicle.persistence.rdb.RepositoriesMarker;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = JpaRepositoriesConfig.class)
+@EnableJpaRepositories(basePackageClasses = RepositoriesMarker.class)
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class PersistenceConfig {
 

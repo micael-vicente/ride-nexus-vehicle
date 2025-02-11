@@ -8,8 +8,8 @@ import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter
 import org.springframework.lang.NonNull;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pt.ridenexus.vehicle.services.exception.EntityExistsException;
 import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
-import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
 
 import java.util.Optional;
 
@@ -23,7 +23,7 @@ public class GraphQLControllerAdvice extends DataFetcherExceptionResolverAdapter
         return switch (ex) {
             case ConstraintViolationException cause -> toGraphQLError(ErrorType.ValidationError, cause.getMessage());
             case BindException ignored -> toGraphQLError(ErrorType.ValidationError, "Invalid argument provided");
-            case VehicleExistsException cause -> toGraphQLError(ErrorType.ExecutionAborted, cause.getMessage());
+            case EntityExistsException cause -> toGraphQLError(ErrorType.ExecutionAborted, cause.getMessage());
             case ObjectNotFoundException cause -> toGraphQLError(ErrorType.ExecutionAborted, cause.getMessage());
             default -> toGraphQLError(ErrorType.ExecutionAborted, ex.getMessage());
         };

@@ -8,7 +8,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -56,19 +55,4 @@ public class VehicleEntity extends BaseEntity {
     @Column(name = "vehicle_type", nullable = false)
     private String vehicleType;
 
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = getEffectiveClass(o);
-        Class<?> thisEffectiveClass = getEffectiveClass(this);
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        VehicleEntity vehicle = (VehicleEntity) o;
-        return getId() != null && Objects.equals(getId(), vehicle.getId());
-    }
-
-    @Override
-    public final int hashCode() {
-        return getEffectiveClass(this).hashCode();
-    }
 }

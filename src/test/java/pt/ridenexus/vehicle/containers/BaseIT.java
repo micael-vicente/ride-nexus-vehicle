@@ -12,7 +12,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
-import pt.ridenexus.vehicle.persistence.rdb.JpaVehicleRepository;
+import pt.ridenexus.vehicle.persistence.rdb.VehicleRepository;
 
 import java.util.Set;
 
@@ -27,7 +27,7 @@ public abstract class BaseIT {
     HttpGraphQlTester graphQlTester;
 
     @Autowired
-    JpaVehicleRepository repo;
+    VehicleRepository repo;
 
     @BeforeEach
     void cleanUp() {

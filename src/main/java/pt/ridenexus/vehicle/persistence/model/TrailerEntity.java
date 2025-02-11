@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Objects;
-
 @Getter
 @Setter
 @ToString
@@ -64,19 +62,4 @@ public class TrailerEntity extends BaseEntity {
     @Column(name = "rd_height_centimeters")
     private Double rdHeightCentimeters;
 
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = getEffectiveClass(o);
-        Class<?> thisEffectiveClass = getEffectiveClass(this);
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        TrailerEntity that = (TrailerEntity) o;
-        return getId() != null && Objects.equals(getId(), that.getId());
-    }
-
-    @Override
-    public final int hashCode() {
-        return getEffectiveClass(this).hashCode();
-    }
 }

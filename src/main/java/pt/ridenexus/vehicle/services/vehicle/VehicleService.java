@@ -3,8 +3,13 @@ package pt.ridenexus.vehicle.services.vehicle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
+import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapper;
+import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
+import pt.ridenexus.vehicle.persistence.rdb.VehicleRepository;
+import pt.ridenexus.vehicle.services.exception.EntityExistsException;
+import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 
 @Slf4j
 @Service
@@ -12,6 +17,7 @@ import pt.ridenexus.vehicle.services.exception.VehicleExistsException;
 public class VehicleService {
 
     private final VehicleRepository repo;
+    private final Service2PersistenceVehicleMapper mapper;
 
     /**
      * Adds a new vehicle if it does not already exist.
@@ -22,14 +28,16 @@ public class VehicleService {
      */
     public Vehicle addVehicle(Vehicle v) {
 
-        boolean vehicleExists = repo.vehicleExists(v.getCountryCode(), v.getRegion(), v.getLicensePlate());
+        boolean vehicleExists = repo.existsByCountryCodeAndRegionAndLicensePlate(v.getCountryCode(), v.getRegion(), v.getLicensePlate());
 
         log.info("Persisting vehicle with license plate: {}", v.getLicensePlate());
         if(vehicleExists) {
             log.info("Vehicle already exists for Country: {}, Region: {}, Plate: {}", v.getCountryCode(), v.getRegion(), v.getLicensePlate());
-            throw new VehicleExistsException();
+            throw new EntityExistsException("Vehicle already exists");
         }
-        Vehicle vehicle = repo.addVehicle(v);
+
+        VehicleEntity saved = repo.save(mapper.map(v));
+        Vehicle vehicle = mapper.map(saved);
         log.info("Vehicle with license plate: {} has been persisted", v.getLicensePlate());
 
         return vehicle;
@@ -45,10 +53,18 @@ public class VehicleService {
     public Vehicle updateVehicle(Long id, Vehicle v) {
 
         log.info("Updating vehicle with license plate: {}", v.getLicensePlate());
-        Vehicle vehicle = repo.updateVehicle(id, v);
+        VehicleEntity vehicle = repo.findById(id).orElse(null);
+
+        if(vehicle == null) {
+            throw new ObjectNotFoundException("Vehicle not found. Id: " + id);
+        }
+
+        mapper.update(v, vehicle);
+        VehicleEntity updated = repo.save(vehicle);
+
         log.info("Vehicle with license plate: {} has been updated", v.getLicensePlate());
 
-        return vehicle;
+        return mapper.map(updated);
     }
 
     /**
@@ -60,10 +76,10 @@ public class VehicleService {
     public Long removeVehicle(Long id) {
 
         log.info("Removing vehicle with id: {}", id);
-        Long removedId = repo.removeVehicle(id);
+        repo.deleteById(id);
         log.info("Vehicle with id: {} has been removed", id);
 
-        return removedId;
+        return id;
     }
 
     /**
@@ -74,7 +90,8 @@ public class VehicleService {
      */
     public Vehicle getVehicle(Long id) {
         log.info("Getting vehicle with id: {}", id);
-        return repo.getVehicle(id);
+        VehicleEntity byId = repo.findById(id).orElse(null);
+        return mapper.map(byId);
     }
 
     /**
@@ -84,7 +101,8 @@ public class VehicleService {
      */
     public Page<Vehicle> getVehicles(int pageNumber, int pageSize) {
         log.info("Getting all vehicles");
-        return repo.getVehicles(pageNumber, pageSize);
+        return repo.findAll(PageRequest.of(pageNumber, pageSize))
+            .map(mapper::map);
     }
 
     /**
@@ -94,6 +112,7 @@ public class VehicleService {
      */
     public Page<Vehicle> getVehiclesByOwner(String ownerId, int pageNumber, int pageSize) {
         log.info("Getting all vehicles with owner: {}", ownerId);
-        return repo.getVehiclesByOwner(ownerId, pageNumber, pageSize);
+        return repo.findAllByOwnerId(ownerId, PageRequest.of(pageNumber, pageSize))
+            .map(mapper::map);
     }
 }

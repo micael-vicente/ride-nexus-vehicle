@@ -37,7 +37,7 @@ public @interface ValidDateFormat {
                 this.format = DateTimeFormatter.ofPattern(constraintAnnotation.format());
                 ConstraintValidator.super.initialize(constraintAnnotation);
             } catch (IllegalArgumentException e) {
-                throw new RuntimeException("Unsupported date format used");
+                throw new CustomValidationException("Unsupported date format used");
             }
         }
 
