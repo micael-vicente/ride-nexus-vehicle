@@ -27,6 +27,8 @@ public class VehicleDto {
     private String model;
     private String version;
     private String alias;
+
+    @NotBlank(groups = AddVehicle.class)
     private String ownerId;
 
     @NotNull(groups = AddVehicle.class)

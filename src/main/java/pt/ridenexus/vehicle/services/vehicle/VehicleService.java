@@ -90,7 +90,9 @@ public class VehicleService {
      */
     public Vehicle getVehicle(Long id) {
         log.info("Getting vehicle with id: {}", id);
-        VehicleEntity byId = repo.findById(id).orElse(null);
+        VehicleEntity byId = repo.findById(id)
+            .orElseThrow(() -> new ObjectNotFoundException("Vehicle not found. Id: " + id));
+
         return mapper.map(byId);
     }
 
@@ -102,17 +104,6 @@ public class VehicleService {
     public Page<Vehicle> getVehicles(int pageNumber, int pageSize) {
         log.info("Getting all vehicles");
         return repo.findAll(PageRequest.of(pageNumber, pageSize))
-            .map(mapper::map);
-    }
-
-    /**
-     * Returns all vehicles.
-     *
-     * @return all persisted vehicles
-     */
-    public Page<Vehicle> getVehiclesByOwner(String ownerId, int pageNumber, int pageSize) {
-        log.info("Getting all vehicles with owner: {}", ownerId);
-        return repo.findAllByOwnerId(ownerId, PageRequest.of(pageNumber, pageSize))
             .map(mapper::map);
     }
 }

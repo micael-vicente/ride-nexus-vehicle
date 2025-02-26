@@ -1,8 +1,4 @@
 spring:
-  graphql:
-    graphiql:
-      enabled: true
-      path: /graphiql
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
