@@ -35,17 +35,16 @@ public class TrailerService {
         return vehicle;
     }
 
-    public Long removeTrailer(Long id) {
+    public void removeTrailer(Long id) {
 
         log.info("Removing trailer with id: {}", id);
         repo.deleteById(id);
         log.info("Trailer with id: {} has been removed", id);
 
-        return id;
     }
 
     public Trailer updateTrailer(Long id, Trailer t) {
-        log.info("Updating trailer with license plate: {}", t.getLicensePlate());
+        log.info("Updating trailer with id: {}", id);
         TrailerEntity trailer = repo.findById(id).orElse(null);
 
         if(trailer == null) {
@@ -55,7 +54,7 @@ public class TrailerService {
         mapper.update(t, trailer);
         TrailerEntity updated = repo.save(trailer);
 
-        log.info("Trailer with license plate: {} has been updated", t.getLicensePlate());
+        log.info("Trailer with id: {} has been updated", id);
 
         return mapper.map(updated);
     }

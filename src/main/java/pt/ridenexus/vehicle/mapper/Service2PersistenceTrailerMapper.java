@@ -17,7 +17,6 @@ public interface Service2PersistenceTrailerMapper {
     @Mapping(target = "modifiedBy", ignore = true)
     TrailerEntity map(Trailer source);
 
-    @Mapping(target = "id", ignore = true)
     Trailer map(TrailerEntity source);
 
     @Mapping(target = "id", ignore = true)

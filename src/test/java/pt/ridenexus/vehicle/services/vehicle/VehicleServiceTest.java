@@ -1,4 +1,4 @@
-package pt.ridenexus.vehicle.services;
+package pt.ridenexus.vehicle.services.vehicle;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,8 +7,6 @@ import pt.ridenexus.vehicle.mapper.Service2PersistenceVehicleMapperImpl;
 import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import pt.ridenexus.vehicle.persistence.rdb.VehicleRepository;
 import pt.ridenexus.vehicle.services.exception.EntityExistsException;
-import pt.ridenexus.vehicle.services.vehicle.Vehicle;
-import pt.ridenexus.vehicle.services.vehicle.VehicleService;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;

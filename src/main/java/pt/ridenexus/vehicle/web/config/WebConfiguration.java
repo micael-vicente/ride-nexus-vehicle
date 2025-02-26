@@ -16,6 +16,7 @@ public class WebConfiguration {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry
                     .addMapping("/**")
+                    //ignored while testing
                     .allowedOrigins("*")
                     .allowedMethods("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE");
             }

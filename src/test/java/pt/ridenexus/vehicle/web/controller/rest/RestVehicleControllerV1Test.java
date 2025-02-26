@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(RestVehicleControllerV1.class)
 @Import(Service2WebVehicleMapperImpl.class)
-public class RestVehicleControllerV1Test {
+class RestVehicleControllerV1Test {
 
     @MockitoBean
     private VehicleService vehicleService;
