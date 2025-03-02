@@ -61,19 +61,16 @@ public class TrailerService {
 
     public Trailer getTrailer(Long id) {
         log.info("Getting trailer with id: {}", id);
-        TrailerEntity byId = repo.findById(id).orElse(null);
+
+        TrailerEntity byId = repo.findById(id)
+            .orElseThrow(() -> new ObjectNotFoundException("Trailer not found. Id: " + id));
+
         return mapper.map(byId);
     }
 
     public Page<Trailer> getTrailers(Integer number, Integer size) {
         log.info("Getting all trailers");
         return repo.findAll(PageRequest.of(number, size))
-            .map(mapper::map);
-    }
-
-    public Page<Trailer> getTrailersByOwner(String ownerId, Integer number, Integer size) {
-        log.info("Getting all trailers with owner: {}", ownerId);
-        return repo.findAllByOwnerId(ownerId, PageRequest.of(number, size))
             .map(mapper::map);
     }
 }

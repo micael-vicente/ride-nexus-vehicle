@@ -1,5 +1,6 @@
 package pt.ridenexus.vehicle.fixtures;
 
+import pt.ridenexus.vehicle.persistence.model.VehicleEntity;
 import pt.ridenexus.vehicle.services.vehicle.Vehicle;
 import pt.ridenexus.vehicle.web.api.VehicleDto;
 
@@ -36,5 +37,19 @@ public class VehiclesFixture {
             .weight(1000)
             .mileage(1)
             .build();
+    }
+
+    public static VehicleEntity vehicleEntity(Long id, String country, String licensePlate) {
+        VehicleEntity entity = new VehicleEntity();
+        entity.setId(id);
+        entity.setCountryCode(country);
+        entity.setLicensePlate(licensePlate);
+        entity.setStatus("BUSY");
+        entity.setOwnerId("1");
+        entity.setVehicleType("MOTORCYCLE");
+        entity.setLicensePlateDate(LocalDate.now());
+        entity.setWeight(1000);
+        entity.setMileage(1);
+        return entity;
     }
 }

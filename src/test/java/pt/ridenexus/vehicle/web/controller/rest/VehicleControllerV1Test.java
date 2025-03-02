@@ -33,9 +33,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(RestVehicleControllerV1.class)
+@WebMvcTest(VehicleControllerV1.class)
 @Import(Service2WebVehicleMapperImpl.class)
-class RestVehicleControllerV1Test {
+class VehicleControllerV1Test {
 
     @MockitoBean
     private VehicleService vehicleService;

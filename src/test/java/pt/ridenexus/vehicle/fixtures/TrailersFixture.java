@@ -29,6 +29,7 @@ public class TrailersFixture {
         TrailerEntity entity = new TrailerEntity();
         entity.setId(id);
         entity.setCountryCode(country);
+        entity.setTrailerType("REEFER_VAN");
         entity.setLicensePlate(licensePlate);
 
         return entity;

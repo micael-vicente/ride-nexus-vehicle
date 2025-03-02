@@ -24,7 +24,7 @@ import pt.ridenexus.vehicle.web.validation.ValidationGroups.AddVehicle;
 @RestController
 @RequestMapping("/api/v1/vehicles")
 @RequiredArgsConstructor
-public class RestVehicleControllerV1 {
+public class VehicleControllerV1 {
 
     private final VehicleService vehicleService;
     private final Service2WebVehicleMapper mapper;

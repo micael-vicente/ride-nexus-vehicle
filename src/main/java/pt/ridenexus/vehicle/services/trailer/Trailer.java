@@ -17,8 +17,8 @@ public class Trailer {
     private String ownerId;
     private String countryCode;
     private String licensePlate;
-    private String trailerType;
-    private String status;
+    private TrailerType trailerType;
+    private TrailerStatus status;
     private Double maximumFreightWeight;
     private String region;
     private Double fdLengthCentimeters;
