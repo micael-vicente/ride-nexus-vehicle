@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(TrailerControllerV1.class)
 @Import(Service2WebTrailerMapperImpl.class)
-public class TrailerControllerV1Test {
+class TrailerControllerV1Test {
 
     @MockitoBean
     private TrailerService trailerService;
