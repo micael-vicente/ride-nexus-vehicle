@@ -6,6 +6,7 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pt.ridenexus.vehicle.services.exception.EntityExistsException;
 import pt.ridenexus.vehicle.services.exception.ObjectNotFoundException;
 
 import java.util.Map;
@@ -17,7 +18,12 @@ public class CustomRestControllerAdvice {
 
     @ExceptionHandler(ObjectNotFoundException.class)
     public ProblemDetail objectNotFound(ObjectNotFoundException e) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    @ExceptionHandler(EntityExistsException.class)
+    public ProblemDetail entityAlreadyExists(EntityExistsException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
     @ExceptionHandler(BindException.class)

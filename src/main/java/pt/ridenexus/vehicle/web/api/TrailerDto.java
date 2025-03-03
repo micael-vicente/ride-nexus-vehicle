@@ -2,12 +2,12 @@ package pt.ridenexus.vehicle.web.api;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.ridenexus.vehicle.services.trailer.TrailerType;
-import pt.ridenexus.vehicle.web.validation.ValidationGroups;
 import pt.ridenexus.vehicle.web.validation.ValidationGroups.AddTrailer;
 import pt.ridenexus.vehicle.web.validation.annotation.IsEnumMember;
 import pt.ridenexus.vehicle.web.validation.annotation.IsKnownCountry;
@@ -19,15 +19,16 @@ import pt.ridenexus.vehicle.web.validation.annotation.IsKnownCountry;
 public class TrailerDto {
 
     private Long id;
+    private String region;
 
     @NotNull(groups = AddTrailer.class)
     private String ownerId;
 
     @IsKnownCountry
-    @NotBlank(groups = ValidationGroups.AddVehicle.class)
+    @NotBlank(groups = AddTrailer.class)
     private String countryCode;
 
-    @NotBlank(groups = ValidationGroups.AddVehicle.class)
+    @NotBlank(groups = AddTrailer.class)
     private String licensePlate;
 
     @NotNull(groups = AddTrailer.class)
@@ -37,17 +38,34 @@ public class TrailerDto {
     @NotNull(groups = AddTrailer.class)
     private String status;
 
+    @Positive
     @NotNull(groups = AddTrailer.class)
     private Double maximumFreightWeight;
 
-    private String region;
+    @Positive
     private Double fdLengthCentimeters;
+
+    @Positive
     private Double fdWidthCentimeters;
+
+    @Positive
     private Double fdHeightCentimeters;
+
+    @Positive
     private Double mdLengthCentimeters;
+
+    @Positive
     private Double mdWidthCentimeters;
+
+    @Positive
     private Double mdHeightCentimeters;
+
+    @Positive
     private Double rdLengthCentimeters;
+
+    @Positive
     private Double rdWidthCentimeters;
+
+    @Positive
     private Double rdHeightCentimeters;
 }

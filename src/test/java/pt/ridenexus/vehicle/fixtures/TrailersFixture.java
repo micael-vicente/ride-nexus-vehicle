@@ -20,7 +20,9 @@ public class TrailersFixture {
             .id(id)
             .countryCode(country)
             .licensePlate(licensePlate)
-            .status("BUSY")
+            .maximumFreightWeight(15000.0)
+            .trailerType("REEFER_VAN")
+            .status("IN_USE")
             .ownerId("1")
             .build();
     }

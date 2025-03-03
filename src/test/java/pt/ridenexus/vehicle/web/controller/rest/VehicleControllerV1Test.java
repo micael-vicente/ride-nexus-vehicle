@@ -89,7 +89,7 @@ class VehicleControllerV1Test {
 
         //act & assert
         mockMvc.perform(get("/api/v1/vehicles/1").contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isNotFound());
+            .andExpect(status().isBadRequest());
         verify(vehicleService).getVehicle(id);
     }
 
